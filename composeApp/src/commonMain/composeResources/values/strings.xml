@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RecipeApp-CMP</string>
+    <string name="home">Home</string>
+    <string name="feed">Feed</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+    <string name="tabs">Tabs</string>
+    <string name="detail">Detail</string>
+</resources>

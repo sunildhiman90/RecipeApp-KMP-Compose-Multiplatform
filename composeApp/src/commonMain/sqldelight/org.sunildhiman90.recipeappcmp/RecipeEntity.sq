@@ -1,0 +1,77 @@
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE Recipe (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    category TEXT NOT NULL,
+    area TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    youtubeLink TEXT NOT NULL,
+    ingredients TEXT AS List<String> NOT NULL,
+    instructions TEXT AS List<String> NOT NULL,
+    isFavorite INTEGER NOT NULL,
+    rating INTEGER NOT NULL,
+    duration TEXT DEFAULT '20 Mins',
+    difficulty TEXT DEFAULT 'Easy'
+);
+
+insertRecipe:
+INSERT INTO Recipe(id, title, description, category, area, imageUrl, youtubeLink, ingredients, instructions, isFavorite, rating, duration, difficulty)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+);
+
+upsertRecipe {
+    UPDATE Recipe
+    SET title = :title,
+    description = :description,
+    category = :category,
+    area = :area,
+    imageUrl = :imageUrl,
+    youtubeLink = :youtubeLink,
+    ingredients = :ingredients,
+    instructions = :instructions,
+    isFavorite = :isFavorite,
+    rating = :rating,
+    duration = :duration,
+    difficulty = :difficulty
+    WHERE id = :id;
+
+    INSERT OR IGNORE INTO Recipe(id, title, description, category, area, imageUrl, youtubeLink, ingredients, instructions, isFavorite, rating, duration, difficulty)
+    VALUES(:id, :title, :description, :category, :area, :imageUrl, :youtubeLink, :ingredients, :instructions, :isFavorite, :rating, :duration, :difficulty);
+
+}
+
+selectAllRecipes:
+SELECT * FROM Recipe;
+
+selectRecipeById:
+SELECT * FROM Recipe WHERE id = ?;
+
+updateRecipe:
+UPDATE Recipe
+ SET title = ?,
+    description = ?,
+    category = ?,
+    area = ?,
+    imageUrl = ?,
+    youtubeLink = ?,
+    ingredients = ?,
+    instructions = ?,
+    isFavorite = ?,
+    rating = ?,
+    duration = ?,
+    difficulty = ?
+    WHERE  id = ?;
+
+detelteRecipeById:
+DELETE FROM Recipe WHERE id = ?;
+
+deleteAllRecipes:
+DELETE FROM Recipe;
+
+searchRecipeByText:
+SELECT * FROM Recipe WHERE title LIKE ('%' || :query || '%') OR description LIKE ('%' || :query || '%') OR ingredients LIKE ('%' || :query || '%');
+
+

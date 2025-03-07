@@ -1,0 +1,44 @@
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE FavoriteRecipe (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER UNIQUE NOT NULL,
+    added_at TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE
+);
+
+insertFavorite:
+INSERT INTO FavoriteRecipe(recipe_id, added_at)
+VALUES(?, ?);
+
+upsertFavorite {
+    UPDATE FavoriteRecipe
+    SET added_at = :added_at
+    WHERE recipe_id = :recipe_id;
+
+   INSERT OR IGNORE INTO FavoriteRecipe(recipe_id, added_at)
+   VALUES(:recipe_id, :added_at);
+}
+
+selectAllFavoritesRecipeIds:
+SELECT id FROM FavoriteRecipe;
+
+
+selectAllFavoritesRecipes:
+SELECT Recipe.* FROM Recipe INNER JOIN FavoriteRecipe ON Recipe.id = FavoriteRecipe.recipe_id;
+
+
+selectFavoriteByRecipeId:
+SELECT * FROM FavoriteRecipe WHERE recipe_id = ?;
+
+
+detelteFavoriteByRecipeById:
+DELETE FROM FavoriteRecipe WHERE recipe_id = ?;
+
+deleteAllFavoriteRecipes:
+DELETE FROM FavoriteRecipe;
+
+
+
+
