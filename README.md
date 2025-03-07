@@ -1,21 +1,34 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+# Recipe App KMP Compose Multiplatform
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+This app is built using Kotlin Multiplatform using Jetpack Compose based UI Framework Compose Multiplatform for sharing the UI between Android, iOS, Web and Desktop all platforms. 
+It demonstrates the use of Koin for Dependency Injection, Ktor for Networking, SQLDelight for Persitence and Decompose for navigation and business logic components in Kotlin Multiplatform for Android, iOS, Web and Desktop platforms. 
+It features minimal features of Recipe App such as List of Recipes, Recipe Detail, Search Recipes, Favorite Recipes, Login and Profile Screens etc..
+
+This app is part of My Compose Multiplatform Full Course on youtube. You check that [here](https://youtu.be/zFgnVbQ8JUU?si=EuFFhPx6F3PwZ7tM)
+
+## Libraries used
 
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+* [Kotlin Multiplatform](https://www.jetbrains.com/kotlin-multiplatform/)
+* [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+* [Koin](https://github.com/InsertKoinIO/koin)
+* [SQLDelight](https://github.com/cashapp/sqldelight)
+* [Coil](https://coil-kt.github.io/coil/)
+* [KTOR Client](https://ktor.io/docs/client-create-new-application.html)
+* [Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)
+* [Compose Navigation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html)
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
 
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+## Pre-requisites
+
+* Kotlin
+* Java JDK 17+
+* Latest stable version of Android Studio IDE
+* Latest XCode (for iOS)
+* Kotlin Multiplatform Plugin in Android Studio
+
+## Setup
+
+* Clone this repository.
+* Open in the latest version of Android Studio and You are ready to Go.
