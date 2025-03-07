@@ -5,7 +5,7 @@ This app is built using Kotlin Multiplatform using Jetpack Compose based UI Fram
 It demonstrates the use of Koin for Dependency Injection, Ktor for Networking, SQLDelight for Persitence and Decompose for navigation and business logic components in Kotlin Multiplatform for Android, iOS, Web and Desktop platforms. 
 It features minimal features of Recipe App such as List of Recipes, Recipe Detail, Search Recipes, Favorite Recipes, Login and Profile Screens etc..
 
-This app is part of My Compose Multiplatform Full Course on youtube. You check that [here](https://youtu.be/zFgnVbQ8JUU?si=EuFFhPx6F3PwZ7tM)
+This app is part of My Compose Multiplatform Full Course on youtube. You can check that [here](https://youtu.be/zFgnVbQ8JUU?si=EuFFhPx6F3PwZ7tM)
 
 ## Libraries used
 
