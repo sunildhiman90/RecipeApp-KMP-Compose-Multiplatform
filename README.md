@@ -19,6 +19,14 @@ This app is part of My Compose Multiplatform Full Course on youtube. You check t
 * [Multiplatform Settings](https://github.com/russhwolf/multiplatform-settings)
 * [Compose Navigation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html)
 
+## Screenshots
+
+#### Mobile
+| | | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot1_home.jpg">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot2_search.jpg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot3_detail.jpg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot4_login.jpg">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot5_profile.jpg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot6_profile.jpg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot7_fav.jpg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/sunildhiman90/RecipeApp-KMP-Compose-Multiplatform/blob/initial/screenshots/screenshot8_popup.jpg">
+
 
 ## Pre-requisites
 
@@ -27,6 +35,8 @@ This app is part of My Compose Multiplatform Full Course on youtube. You check t
 * Latest stable version of Android Studio IDE
 * Latest XCode (for iOS)
 * Kotlin Multiplatform Plugin in Android Studio
+
+
 
 ## Setup
 
