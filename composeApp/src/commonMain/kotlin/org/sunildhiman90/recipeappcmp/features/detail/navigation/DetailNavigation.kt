@@ -7,6 +7,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.savedstate.read
 import org.sunildhiman90.recipeappcmp.features.app.data.Screen
 import org.sunildhiman90.recipeappcmp.features.detail.ui.DetailRoute
 
@@ -29,7 +30,7 @@ fun NavGraphBuilder.detailNavGraph(
             }
         )
     ) {
-        val recipeId = it.arguments?.getLong(RECIPE_ID_ARG) ?: 0
+        val recipeId = it.arguments?.read { getLong(RECIPE_ID_ARG) } ?: 0
         DetailRoute(
             recipeId,
             isUserLoggedIn = isUserLoggedIn,
