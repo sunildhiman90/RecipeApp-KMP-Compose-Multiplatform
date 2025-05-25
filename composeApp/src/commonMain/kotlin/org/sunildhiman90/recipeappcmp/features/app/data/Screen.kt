@@ -1,5 +1,6 @@
 package org.sunildhiman90.recipeappcmp.features.app.data
 
+import kotlinx.serialization.SerialName
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.sunildhiman90.recipeappcmp.features.detail.navigation.RECIPE_ID_ARG

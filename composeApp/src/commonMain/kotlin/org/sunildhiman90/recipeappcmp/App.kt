@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.input.key.Key.Companion.P
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
@@ -23,7 +24,8 @@ import org.sunildhiman90.recipeappcmp.features.login.ui.LoginViewModel
 @Composable
 @Preview
 fun App(
-    loginViewModel: LoginViewModel = koinViewModel()
+    loginViewModel: LoginViewModel = koinViewModel(),
+    navController: NavHostController = rememberNavController()
 ) {
 
 
@@ -31,7 +33,7 @@ fun App(
 
         KoinContext {
 
-            val navController = rememberNavController()
+            //val navController = rememberNavController()
             val appState = rememberAppState(
                 navController,
                 scope = rememberCoroutineScope(),
