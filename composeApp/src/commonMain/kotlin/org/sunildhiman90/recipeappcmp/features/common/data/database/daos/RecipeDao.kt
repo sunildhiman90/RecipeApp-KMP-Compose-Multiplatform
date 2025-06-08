@@ -75,6 +75,7 @@ class RecipeDao(
     suspend fun upsertRecipesBulk(recipes: List<RecipeItem>) {
         dbHelper.withDatabase { database ->
             recipes.forEach { recipeItem ->
+                //TODO, This is not working in sqldelight 2.1.0, due to this issue: https://github.com/sqldelight/sqldelight/issues/5753
                 database.recipeEntityQueries.upsertRecipe(
                     recipeItem.title,
                     recipeItem.description,

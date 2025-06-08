@@ -1,5 +1,3 @@
-import kotlin.String;
-import kotlin.collections.List;
 
 CREATE TABLE FavoriteRecipe (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -12,14 +10,17 @@ insertFavorite:
 INSERT INTO FavoriteRecipe(recipe_id, added_at)
 VALUES(?, ?);
 
-upsertFavorite {
-    UPDATE FavoriteRecipe
-    SET added_at = :added_at
-    WHERE recipe_id = :recipe_id;
-
-   INSERT OR IGNORE INTO FavoriteRecipe(recipe_id, added_at)
-   VALUES(:recipe_id, :added_at);
-}
+-- This is not working in sqldelight 2.1.0, due to this issue: https://github.com/sqldelight/sqldelight/issues/5753
+-- upsertFavorite {
+--     UPDATE FavoriteRecipe
+--     SET added_at = :added_at
+--     WHERE recipe_id = :recipe_id;
+--
+--    INSERT OR IGNORE INTO FavoriteRecipe(recipe_id, added_at)
+--    VALUES(:recipe_id, :added_at);
+--
+--    SELECT 1;
+-- }
 
 selectAllFavoritesRecipeIds:
 SELECT id FROM FavoriteRecipe;
@@ -33,7 +34,7 @@ selectFavoriteByRecipeId:
 SELECT * FROM FavoriteRecipe WHERE recipe_id = ?;
 
 
-detelteFavoriteByRecipeById:
+deleteFavoriteRecipeById:
 DELETE FROM FavoriteRecipe WHERE recipe_id = ?;
 
 deleteAllFavoriteRecipes:

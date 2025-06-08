@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 
-    id("app.cash.sqldelight") version "2.0.2"
+    id("app.cash.sqldelight") version "2.1.0"
     kotlin("plugin.serialization") version "2.1.21"
 }
 
@@ -36,28 +36,28 @@ kotlin {
     
     jvm("desktop")
     
-//    @OptIn(ExperimentalWasmDsl::class)
-//    wasmJs {
-//        moduleName = "composeApp"
-//        browser {
-//            val rootDirPath = project.rootDir.path
-//            val projectDirPath = project.projectDir.path
-//            commonWebpackConfig {
-//                outputFileName = "composeApp.js"
-//                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-//                    static = (static ?: mutableListOf()).apply {
-//                        // Serve sources to debug inside browser
-//                        add(rootDirPath)
-//                        add(projectDirPath)
-//                    }
-//                }
-//            }
-//        }
-//        binaries.executable()
-//    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        outputModuleName = "composeApp"
+        browser {
+            val rootDirPath = project.rootDir.path
+            val projectDirPath = project.projectDir.path
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(rootDirPath)
+                        add(projectDirPath)
+                    }
+                }
+            }
+        }
+        binaries.executable()
+    }
 
     js(IR) {
-        moduleName = "composeApp"
+        outputModuleName = "composeApp"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -144,7 +144,15 @@ kotlin {
         jsMain.dependencies {
             implementation(libs.ktor.client.js)
 
-            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.0.2"))
+            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.1.0"))
+            implementation(npm("sql.js", "1.8.0"))
+            implementation(libs.web.worker.driver)
+            implementation(devNpm("copy-webpack-plugin", "9.1.0"))
+        }
+
+        wasmJsMain.dependencies {
+
+            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.1.0"))
             implementation(npm("sql.js", "1.8.0"))
             implementation(libs.web.worker.driver)
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))

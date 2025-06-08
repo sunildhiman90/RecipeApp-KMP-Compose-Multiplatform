@@ -41,6 +41,7 @@ upsertRecipe {
     INSERT OR IGNORE INTO Recipe(id, title, description, category, area, imageUrl, youtubeLink, ingredients, instructions, isFavorite, rating, duration, difficulty)
     VALUES(:id, :title, :description, :category, :area, :imageUrl, :youtubeLink, :ingredients, :instructions, :isFavorite, :rating, :duration, :difficulty);
 
+    SELECT 1;
 }
 
 selectAllRecipes:
