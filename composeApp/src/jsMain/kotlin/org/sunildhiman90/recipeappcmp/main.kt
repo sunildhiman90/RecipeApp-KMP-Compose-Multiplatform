@@ -8,6 +8,7 @@ import androidx.navigation.bindToNavigation
 import androidx.navigation.compose.rememberNavController
 import androidx.savedstate.read
 import kotlinx.browser.document
+import org.jetbrains.skiko.wasm.onWasmReady
 import kotlinx.browser.window
 import org.sunildhiman90.recipeappcmp.di.initKoinJs
 import org.sunildhiman90.recipeappcmp.features.app.data.Screen
@@ -17,49 +18,57 @@ val koin = initKoinJs()
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalBrowserHistoryApi::class)
 fun main() {
-    ComposeViewport(document.body!!) {
+    onWasmReady {
+        ComposeViewport(document.body!!) {
 
-        val navController = rememberNavController()
+            val navController = rememberNavController()
 
-        App(navController = navController)
+            App(navController = navController)
 
-        LaunchedEffect(Unit) {
+            LaunchedEffect(Unit) {
 
 
-            val initRoute = window.location.hash.substringAfter("#", "")
-            when {
-                initRoute.startsWith("detail") -> {
-                    val id = initRoute.substringAfter("detail/").toLong()
-                    navController.navigate(Screen.Detail.route.replace("$RECIPE_ID_ARG={$RECIPE_ID_ARG}", "$RECIPE_ID_ARG=$id"))
-                }
-                initRoute.startsWith("search") -> {
-                    navController.navigate(Screen.Search.route)
-                }
-            }
-
-            window.bindToNavigation(navController) { entry ->
-                val route = entry.destination.route.orEmpty()
-
+                val initRoute = window.location.hash.substringAfter("#", "")
                 when {
-                    route.startsWith(Screen.Tabs.route) -> {
-                        "#"
+                    initRoute.startsWith("detail") -> {
+                        val id = initRoute.substringAfter("detail/").toLong()
+                        navController.navigate(
+                            Screen.Detail.route.replace(
+                                "$RECIPE_ID_ARG={$RECIPE_ID_ARG}",
+                                "$RECIPE_ID_ARG=$id"
+                            )
+                        )
                     }
 
-                    route.startsWith(Screen.Detail.route) -> {
-                        val args = entry.arguments
-                        val id = args?.read {
-                            getLongOrNull(RECIPE_ID_ARG)
+                    initRoute.startsWith("search") -> {
+                        navController.navigate(Screen.Search.route)
+                    }
+                }
+
+                window.bindToNavigation(navController) { entry ->
+                    val route = entry.destination.route.orEmpty()
+
+                    when {
+                        route.startsWith(Screen.Tabs.route) -> {
+                            "#"
                         }
 
-                        //#detail/1
-                        "#detail/${id}"
-                    }
+                        route.startsWith(Screen.Detail.route) -> {
+                            val args = entry.arguments
+                            val id = args?.read {
+                                getLongOrNull(RECIPE_ID_ARG)
+                            }
 
-                    route.startsWith(Screen.Search.route) -> {
-                        "#search"
-                    }
+                            //#detail/1
+                            "#detail/${id}"
+                        }
 
-                    else -> ""
+                        route.startsWith(Screen.Search.route) -> {
+                            "#search"
+                        }
+
+                        else -> ""
+                    }
                 }
             }
         }
