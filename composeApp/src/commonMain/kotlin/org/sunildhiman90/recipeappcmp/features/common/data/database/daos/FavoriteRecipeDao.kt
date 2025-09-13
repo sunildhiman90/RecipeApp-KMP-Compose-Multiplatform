@@ -9,13 +9,15 @@ import org.sunildhiman90.recipeappcmp.RecipeAppCmpAppDb
 import org.sunildhiman90.recipeappcmp.features.common.data.database.DbHelper
 import org.sunildhiman90.recipeappcmp.features.common.data.database.recipeEntityMapper
 import org.sunildhiman90.recipeappcmp.features.common.domain.entities.RecipeItem
+import kotlin.time.ExperimentalTime
 
 class FavoriteRecipeDao(
     private val dbHelper: DbHelper
 ) {
 
+    @OptIn(ExperimentalTime::class)
     suspend fun addFavorite(recipeId: Long) {
-        val currentDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+        val currentDateTime = kotlin.time.Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         dbHelper.withDatabase { database ->
             //TODO, upsertFavorite is not working in sqldelight 2.1.0, due to this issue: https://github.com/sqldelight/sqldelight/issues/5753
             // SO currently we have issue in upsert statement, for workaround of running, i added SELECT 1 in the end of statement,.
