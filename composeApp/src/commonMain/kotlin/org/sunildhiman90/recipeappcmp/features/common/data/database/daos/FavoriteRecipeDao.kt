@@ -8,13 +8,15 @@ import kotlinx.datetime.toLocalDateTime
 import org.sunildhiman90.recipeappcmp.features.common.data.database.DbHelper
 import org.sunildhiman90.recipeappcmp.features.common.data.database.recipeEntityMapper
 import org.sunildhiman90.recipeappcmp.features.common.domain.entities.RecipeItem
+import kotlin.time.ExperimentalTime
 
 class FavoriteRecipeDao(
     private val dbHelper: DbHelper
 ) {
 
+    @OptIn(ExperimentalTime::class)
     suspend fun addFavorite(recipeId: Long) {
-        val currentDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+        val currentDateTime = kotlin.time.Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         dbHelper.withDatabase { database ->
             database.favoriteRecipeQueries.upsertFavorite(
                recipe_id = recipeId, added_at = currentDateTime.toString()
