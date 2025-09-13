@@ -10,9 +10,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-
-    id("app.cash.sqldelight") version "2.1.0"
-    kotlin("plugin.serialization") version "2.1.21"
+    alias(libs.plugins.serialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
