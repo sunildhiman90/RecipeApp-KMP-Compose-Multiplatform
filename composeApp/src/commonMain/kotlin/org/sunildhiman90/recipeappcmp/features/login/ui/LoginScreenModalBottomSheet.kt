@@ -58,9 +58,7 @@ fun LoginScreenModalBottomSheet(
     onLoginSuccess: () -> Unit
 ) {
     val bottomSheetState =
-        rememberModalBottomSheetState(skipPartiallyExpanded = true, confirmValueChange = {
-            false
-        })
+        rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
