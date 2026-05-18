@@ -25,6 +25,20 @@ selectAllFavoritesRecipeIds:
 SELECT id FROM FavoriteRecipe;
 
 
+-- This is not working in sqldelight 2.1.0, due to this issue: https://github.com/sqldelight/sqldelight/issues/5753
+-- upsertFavorite {
+--   UPDATE FavoriteRecipe
+--   SET added_at = :added_at
+--   WHERE recipe_id = :recipe_id;
+--
+--   INSERT OR IGNORE INTO FavoriteRecipe (recipe_id, added_at)
+--   VALUES (:recipe_id, :added_at);
+-- }
+
+deleteFavoriteRecipeById:
+DELETE FROM FavoriteRecipe WHERE recipe_id = ?;
+
+
 selectAllFavoritesRecipes:
 SELECT Recipe.* FROM Recipe INNER JOIN FavoriteRecipe ON Recipe.id = FavoriteRecipe.recipe_id;
 
