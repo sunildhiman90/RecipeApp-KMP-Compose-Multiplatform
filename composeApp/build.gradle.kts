@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidKotlinMultiplartformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.serialization)
@@ -13,13 +13,17 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+
+    android {
+
+        namespace = "org.sunildhiman90.recipeappcmp.composeApp"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+        androidResources {
+            enable = true
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -76,13 +80,12 @@ kotlin {
         
         androidMain.dependencies {
             implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
 
-            implementation(libs.ktor.client.android)
+            api(libs.ktor.client.android)
 
-            implementation(libs.koin.android)
+            api(libs.koin.android)
 
-            implementation(libs.android.driver)
+            api(libs.android.driver)
 
         }
         commonMain.dependencies {
@@ -146,37 +149,6 @@ kotlin {
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
         }
     }
-}
-
-android {
-    namespace = "org.sunildhiman90.recipeappcmp"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        applicationId = "org.sunildhiman90.recipeappcmp"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
-dependencies {
-    debugImplementation(compose.uiTooling)
 }
 
 compose.desktop {
